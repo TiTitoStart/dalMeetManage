@@ -1,0 +1,318 @@
+@page-wrap-bg-color: #fff; // content背景
+// @theme-color: #001529; //主题颜色
+@theme-color: #1890FF;
+@grey: #9ba1a7; //灰色字体颜色
+@my-theme-hover-text-color: #ffffff;
+@page-wrap-padding: 20px;
+@blue-btn: #1890FF;
+
+*:not(i) {
+  font-size: 14px;
+}
+
+button {
+  box-shadow: none !important;
+}
+
+span {
+  display: inline-block;
+}
+
+.bg-color-blue {
+  background: @blue-btn;
+}
+
+.font-color-blue {
+  color: #1890FF;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+//垂直居中
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//水平方向居中
+.flex-center-row {
+  display: flex;
+  justify-content: center;
+}
+//垂直方向居中
+.flex-center-col {
+  display: flex;
+  align-items: center;
+}
+.marginLeft10 {
+  margin-left: 10px;
+}
+
+.marginRight10 {
+  margin-right: 10px;
+}
+
+.marginTop10 {
+  margin-top: 10px;
+}
+
+.marginBottom10 {
+  margin-bottom: 10px;
+}
+
+.marginLeft20 {
+  margin-left: 20px;
+}
+
+.marginRight20 {
+  margin-right: 20px;
+}
+
+.marginTop20 {
+  margin-top: 20px;
+}
+
+.marginBottom20 {
+  margin-bottom: 20px;
+}
+
+.buttons {
+  button+button {
+    margin-left: 10px;
+  }
+
+  &.right {
+    float: right;
+  }
+}
+
+.search,
+.refresh {
+  font-size: 22px;
+  color: @theme-color;
+  line-height: 31px;
+  vertical-align: middle;
+  // margin-left: 10px;
+  cursor: pointer;
+}
+
+// 蓝色按钮
+.ivu-btn-blue {
+  border-color: @blue-btn;
+  color: @blue-btn;
+  background-color: @my-theme-hover-text-color;
+  font-size: 12px;
+}
+
+.ivu-btn-blue:hover {
+  color: @my-theme-hover-text-color;
+  background-color: @blue-btn;
+  border-color: @blue-btn;
+}
+
+.ivu-btn-blue:focus {
+  outline: none !important;
+  color: @blue-btn;
+}
+
+// 单选框的样式
+.ivu-radio-group {
+  label {
+    .ivu-radio-inner {
+      height: 12px;
+      width: 12px;
+
+      &:after {
+        height: 6px;
+        width: 6px;
+      }
+    }
+
+    span:nth-of-type(2) {
+      color: #666666;
+      font-weight: 400;
+    }
+  }
+}
+
+// 表格行高亮度的颜色
+.ivu-table {
+  .ivu-table-row-highlight.ivu-table-row-hover,
+  .ivu-table-row-hover,
+  .ivu-table-row-highlight {
+    td {
+      background-color: rgb(214, 243, 237)
+    }
+  }
+}
+
+// 必填加*
+.required-input {
+  color: #ed3f14;
+  font-size: 12px;
+  line-height: 1;
+  font-family: SimSun;
+  margin-right: 1px;
+}
+
+//创建修改操作等title样式
+.options-part {
+  // background: #fff;
+  margin-right: 24px;
+  width: 100%;
+  border-radius: 2px;
+  // overflow-y: auto;
+  .opt-title {
+    width: 100%;
+    margin-bottom: 24px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background: #fff;
+    font-size: 20px;
+    .title-content {
+      font-size: 20px;
+      padding-left: 8px;
+      font-weight: 600;
+    }
+  }
+  .hint {
+    font-size: 12px;
+    color: #ed3f14;
+    margin-left: 24px;
+  }
+}
+//带边框阴影的三角形
+.tri-dot-left-bgblue:after, .tri-dot-left-bgblue:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  top: 8px;
+  position: absolute;
+  width: 0;
+}
+
+.tri-dot-left-bgblue:after {
+  border-width: 10px;
+  border-color: transparent #daebff transparent transparent;
+  left: -20px;
+  margin-top: 2px;
+}
+
+.tri-dot-left-bgblue:before {
+  border-width: 11px;
+  border-color: transparent #e2e2e2  transparent transparent;
+  left: -24px;
+  top: 9px;
+}
+
+
+.tri-dot-left:after, .tri-dot-left:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  top: 8px;
+  position: absolute;
+  width: 0;
+}
+
+.tri-dot-left:after {
+  border-width: 10px;
+  border-color: transparent #fff transparent transparent;
+  left: -20px;
+  margin-top: 2px;
+}
+
+.tri-dot-left:before {
+  border-width: 11px;
+  border-color: transparent #e2e2e2 transparent transparent;
+  left: -24px;
+  top: 9px;
+}
+
+
+.tri-dot-right:after, .tri-dot-right:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  top: 8px;
+  position: absolute;
+  width: 0;
+}
+
+.tri-dot-right:after {
+  border-width: 10px;
+  border-color: transparent transparent transparent #85f042;
+  right: -20px;
+  margin-top: 2px;
+}
+
+.tri-dot-right:before {
+  border-width: 11px;
+  border-color: transparent transparent transparent #e2e2e2;
+  right: -24px;
+  top: 9px;
+}
+
+.tri-dot-right-bgblue:after, .tri-dot-right-bgblue:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  top: 8px;
+  position: absolute;
+  width: 0;
+}
+
+.tri-dot-right-bgblue:after {
+  border-width: 10px;
+  border-color: transparent transparent transparent #daebff;
+  right: -20px;
+  margin-top: 2px;
+}
+
+.tri-dot-right-bgblue:before {
+  border-width: 11px;
+  border-color: transparent transparent transparent #e2e2e2;
+  right: -24px;
+  top: 9px;
+}
+
+//搜索样式
+.search-area {
+  width: 100%;
+  // margin-bottom: 24px;
+  // display: flex;
+  // flex-wrap: wrap;
+  .search-item {
+    display: inline-block;
+    margin-right: 24px;
+    flex: 0 1 auto;
+    margin-bottom: 12px;
+  }
+}
+
+//中间内容样式
+.main-conetnt {
+  background: #F0F2F5;
+  // height: 100%;
+  // overflow: hidden;
+  .title-part {
+    font-size: 20px;
+    font-weight: 600;
+    background: #fff;
+    padding-left: 24px;
+    height: 40px;
+    line-height: 40px;
+  }
+}
