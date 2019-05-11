@@ -2,8 +2,8 @@
   <div class="login_wrap">
     <div class="content-left">
       <div class="title">
-        <img src="../../assets/images/login-title.png">
-        <span>绿米智能客服运营后台</span>
+        <!-- <img src="../../assets/images/login-title.png"> -->
+        <span>"有聊么"交友互动后台管理</span>
       </div>
       <div class="my-img">
         <img src="../../assets/images/login-bg.png"/>
@@ -11,7 +11,6 @@
     </div>
     <div class="content-right">
         <div class="login-icon"><img src="../../assets/images/login-icon.png"/></div>
-        <div class="title">Sign in to LUMI AI Conversation Tagging</div>
         <div class="form_wrap">
           <div class="user-info">
             <div class="input-item">
@@ -35,15 +34,6 @@
         </div>
         <div class="to-connect">还没有账号? 请联系管理员</div>
     </div>
-    <!-- <div class="my-bottom">
-      <div class="my-link">
-         <span><a href="http://www.lumiunited.com/nav/about/about.php" target="_blank">关于绿米</a></span>
-         <span><a href="http://www.lumiunited.com/nav/service/service.php" target="_blank">服务支持</a></span>
-         <span><a href="http://www.lumiunited.com/nav/products/product.php" target="_blank">产品中心</a></span>
-         <span><a href="Mailto:sales@lumiunited.com" target="_blank">联系我们</a></span>
-      </div>
-      <div class="copyright">Copyright © 2015-2019版权所有 粤ICP备15041247号 深公网安备4403300900606号</div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -78,42 +68,8 @@ export default {
           this.$Message.error('请将信息填写完整');
         }
         else {
-          this.$api.login({
-            account: this.account,
-            password: this.$md5(this.password)
-          }).then(res => {
-            this.$localStorage.setValue('userInfo', res);
-            //记住用户和账号
-            if(this.isRem[0] === '0') {
-              this.$localStorage.setValue('account', this.account);
-              this.$localStorage.setValue('isRem', this.isRem);
-            }
-            else {
-              this.$localStorage.setValue('account', '');
-            }
-            this.$Message.success('登入成功');
-            // this.$router.addRoutes(HomeRouter);
-            this.$router.push({
-              path: '/Home'
-            });
-            // if(res.role === 'worker') {
-            //   this.$router.push({
-            //       path: '/Home/Main'
-            //     });
-            //   }
-            // else if(res.role === 'engineer') {
-            //   this.$router.push({
-            //     path: '/Home/Main'
-            //   });
-            // }
-            // else if(res.role === 'manager') {
-            //   this.$router.push({
-            //     path: '/Home/Main'
-            //   });
-            // }
-            // else {
-            //   this.$Message.error('你还没有权限，请联系管理员开通')
-            // }
+          this.$router.push({
+            path: '/Home'
           });
         }
       }
