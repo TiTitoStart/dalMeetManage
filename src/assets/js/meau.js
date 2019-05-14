@@ -6,14 +6,14 @@ export default  {
     {
       level: '2',
       role: ['manager', 'engineer', 'worker'],
-      menuName: '知识管理',
+      menuName: '动态管理',
       icon:'ios-book-outline',
       url:'',
       child:[
         {
           level: '2-2',
           role: ['manager', 'engineer', 'worker'],
-          menuName: '领域运营',
+          menuName: '动态运营',
           icon:'',
           url:'/Home/FieldManage',
         }

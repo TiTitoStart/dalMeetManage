@@ -73,10 +73,10 @@ export default [
         menuId: '2-2',
         breadcrumbList: [{
           url: '',
-          name: '知识管理'
+          name: '动态管理'
         }, {
           url: '/Home/FieldManage',
-          name: '领域管理'
+          name: '动态运营'
         }],
       }
     }
@@ -212,7 +212,7 @@ export default [
     }
   },{
     path: '',
-    redirect: 'Main'
+    redirect: 'User'
   }]
 },{
   path: '*',

@@ -10,7 +10,7 @@
  */
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const baseUrl = require('./src/assets/config/index');
-const baseUrl = process.env.NODE_ENV === 'production' ? 'http://cs-bot.aqara.cn:80/bot' : 'http://192.168.100.58:8080/bot';
+// const baseUrl = process.env.NODE_ENV === 'production' ? '127.0.0.1:4400/api' : '127.0.0.1:4400/api';
 module.exports = {
   css: {
     
@@ -25,17 +25,17 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: '8086',
-    open: true,
-    proxy: { // 配置跨域
-      '/bot': {
-        target: baseUrl,
-        ws: true,
-        changOrigin: true,
-        pathRewrite: {
-          '^/bot': ''
-        }
-      }
-    }
+    open: true
+    // proxy: { // 配置跨域
+    //   '/api': {
+    //     target: baseUrl,
+    //     ws: true,
+    //     changOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': ''
+    //     }
+    //   }
+    // }
   },
   configureWebpack: {
     optimization: {

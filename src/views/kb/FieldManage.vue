@@ -1,7 +1,7 @@
 <template>
   <div class="fm-wrap">
     <div class="main-conetnt" v-if="!$route.params.options">
-      <div class="title-part">领域运营</div>
+      <div class="title-part">动态运营管理</div>
       <div class="table-part" style="padding: 24px;">
         <div class="search-area">
           <div class="search-item" v-if="$store.state.categoryDataAll">
@@ -23,7 +23,6 @@
     <div class="options-part" v-if="$route.params.options === 'add' || $route.params.options === 'edit'">
       <div class="opt-title">
         <span class="title-content">{{modalCondition.create_or_modify_fd.title}}</span>
-        <span class="hint">*请不要添加意思相近的问题、语料、领域</span>
       </div>
       <KbForm @getFormData="questionHandle" :formData="modalCondition.create_or_modify_fd.type === 'modify' ? rowChooseData:''"></KbForm>
     </div>
@@ -71,79 +70,25 @@ export default {
       },
       fieldColumnsData: [
         {
-          title: '领域',
-          key: 'question',
+          title: '内容',
+          key: 'content',
           align: 'center'
         },
         {
-          title: '语料',
-          key: 'similar_questions',
+          title: '图片',
+          key: 'imgs_url',
           align: 'center',
           render: (h, params) => {
             let arr = [];
-            if(params.row.similar_questions) {
-              params.row.similar_questions.forEach( (item, index) => {
-                if(index < 2) {
-                  arr.push(h('Tag', item));
+            params.row.imgs_url.forEach(item => {
+              arr.push(h('img', {
+                attrs: {
+                  src: item,
+                  style: 'width: 70px;border-radius: 2px;'
                 }
-              });
-              return h('div', [h('div', arr),h('div', {
-                style: {
-                  fontSize: '12px',
-                  float: 'right'
-                }
-              }, `...共${params.row.similar_questions.length}条`)]);
-            }
-          }
-        },
-        {
-          title: '答案',
-          key: 'answers',
-          align: 'center',
-          render: (h, params) => {
-            return h('a',{
-              style: {
-                color: '#2d8cf0'
-              },
-              on: {
-                click: () => {
-                  this.$Modal.info({
-                    title: '答案详情',
-                    width: 740,
-                    // content: params.row.answers[0].content,
-                    render: (h) => {
-                      return h('div', {
-                        class: ['ql-container', 'ql-snow'],
-                        style: {
-                          border: 'none'
-                        }
-                      }, [h('div', {
-                        class: ['ql-editor'],
-                        style: {
-                          padding: 0
-                        }
-                      }, [h('p', {
-                        class: 'richedit-content',
-                        domProps: {
-                          innerHTML: params.row.answers[0].content
-                        }
-                      })])]);
-                    }
-                  });
-                }
-              }
-            },'查看');
-          }
-        },
-        {
-          title: '分类',
-          key: 'cnames',
-          align: 'center',
-          render: (h, params) => {
-            return h(
-              'div',
-              params.row.cnames.replace(/,/g,'-')
-            );
+              }))
+            });
+            return h('div', arr);
           }
         },
         {
@@ -152,19 +97,6 @@ export default {
           align: 'center',
           render: (h, params) => {
             return h('div', params.row.is_enable ? '启用' : '禁用');
-          }
-        },
-        {
-          title: '最后编辑',
-          key: 'last_modify',
-          align: 'center',
-          render: (h, params) => {
-            if(params.row.action_recorders && params.row.action_recorders.length > 0) {
-              return h('div', params.row.action_recorders[params.row.action_recorders.length - 1].real_name );
-            }
-            else {
-              return h('div', '');
-            }
           }
         },
         {
@@ -289,13 +221,9 @@ export default {
       });
     },
     getFieldList(params) {
-      params = params || {};
-      params.size = this.$store.state.pageSize;
-      params.page = this.page;
       this.isLoading = true;
-      this.$api.field.query(params).then(res => {
-        this.fieldListData = res.kdomains;
-        this.total = res.hits;
+      this.$api.moment.query(params).then(res => {
+        this.fieldListData = res;
         this.isLoading = false;
       });
     },

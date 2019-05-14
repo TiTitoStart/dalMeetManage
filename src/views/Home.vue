@@ -6,11 +6,11 @@
       </Header>
       <Menu :activeName="$store.state.selectedMenuId" width="auto" theme="dark" :openNames="[$store.state.selectedMenuId.split('-')[0]]" :class="menuitemClasses">
         <div v-for="(item,index) in meau" :key="index">
-          <MenuItem v-if="!item.child && item.role.includes(userInfo.role)" :name="item.level" :to="item.url" :class="index === 0 && $store.state.selectedMenuId.split('-')[0] === '1'?'ivu-menu-item ivu-menu-item-active ivu-menu-item-selected .ivu-menu-dark.ivu-menu-item-active .ivu-menu-item-selected':''" >
+          <MenuItem v-if="!item.child" :name="item.level" :to="item.url" :class="index === 0 && $store.state.selectedMenuId.split('-')[0] === '1'?'ivu-menu-item ivu-menu-item-active ivu-menu-item-selected .ivu-menu-dark.ivu-menu-item-active .ivu-menu-item-selected':''" >
             <Icon :type="item.icon"></Icon>
             <span>{{item.menuName}}</span> 
           </MenuItem>
-          <Submenu v-if="item.child && item.role.includes(userInfo.role)" :name="item.level" :to="item.url">
+          <Submenu v-if="item.child" :name="item.level" :to="item.url">
             <template slot="title">
               <Icon :type="item.icon"></Icon>
               <span :class="item.child?'':'hide-arrow'">{{item.menuName}}</span>
@@ -29,7 +29,7 @@
           <!-- <img src="../assets/images/user-s.png"> -->
           <Dropdown style="margin-left:10px;">
             <a href="javascript:void(0)" style="color:#333;">
-              {{userInfo.real_name}}
+              <!-- {{userInfo.real_name}} -->
               <Icon type="ios-arrow-down"></Icon>
             </a>
             <DropdownMenu slot="list">
@@ -127,13 +127,13 @@
     created() {
     },
     mounted() {
-      if(!this.userInfo) {
-        this.$router.push({
-          name: 'login'
-        });
-      }
-      this.getCategorySelections();
-      this.getCategorySelectionsAll();
+      // if(!this.userInfo) {
+      //   this.$router.push({
+      //     name: 'login'
+      //   });
+      // }
+      // this.getCategorySelections();
+      // this.getCategorySelectionsAll();
       if( window.innerWidth < 1100) {
         this.$refs.sider.toggleCollapse();
       }

@@ -39,12 +39,12 @@ function interceptors(router,store){
         403 --没有权限
         404 --token失效
       */
-      if(response.data.code === 403 || response.data.code === 404) {
-        router.replace({path: '/login'});
-      }
-      else {
+      // if(response.data.code === 403 || response.data.code === 404) {
+      //   router.replace({path: '/login'});
+      // }
+      // else {
         return response;
-      }
+      // }
     },
     error => {
       return Promise.reject(error);

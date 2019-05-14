@@ -3,12 +3,6 @@
     <div class="main-conetnt">
       <div class="title-part">用户管理</div>
       <div class="search-area" style="background:#fff;padding: 12px 24px;">
-        <div class="search-item">
-          选择角色:
-          <Select v-model="searchArea.role" style="width:200px">
-            <Option v-for="item in roleList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>
-        </div>
         <div class="search-btn">
           <Button type="primary" @click="searchUser">搜索</Button>
         </div>
@@ -29,9 +23,9 @@
       :title="modalCondition.create_or_modify_user.title"
       width="700px">
       <Form :model="userForm" ref="userForm" :label-width="80" :rules="ruleValidate">
-        <FormItem label="姓名：" prop="real_name">
+        <!-- <FormItem label="姓名：" prop="real_name">
           <Input v-model="userForm.real_name" placeholder="Enter something..." style="width: 400px"></Input>
-        </FormItem>
+        </FormItem> -->
         <FormItem label="账号：" prop="account">
           <Input v-model="userForm.account" placeholder="Enter something..." style="width: 400px"></Input>
         </FormItem>
@@ -69,7 +63,7 @@ export default {
       choose_status: '',
       userForm: {
         account: '',
-        real_name: '',
+        // real_name: '',
         job_num: '',
         phone_num: '',
         email: '',
@@ -97,9 +91,9 @@ export default {
       },
       ruleValidate: {
         account: [{ required: true, message: '必填字段', trigger: 'blur' }],
-        real_name: [
-          { required: true, message: '必填字段', trigger: 'blur' }
-        ],
+        // real_name: [
+        //   { required: true, message: '必填字段', trigger: 'blur' }
+        // ],
         job_num: [
           { required: true, message: '必填字段', trigger: 'blur' }
         ],
@@ -123,46 +117,48 @@ export default {
           align: 'center'
         },
         {
-          title: '姓名',
-          key: 'real_name',
+          title: '昵称',
+          key: 'nickname',
           align: 'center'
         },
-        // {
-        //   title: '工号',
-        //   key: 'job_num',
-        //   align: 'center'
-        // },
         {
           title: '账号',
-          key: 'account',
+          key: 'phoneNumber',
           align: 'center'
         },
         {
-          title: '手机号',
-          key: 'phone_num',
-          align: 'center'
-        },
-        // {
-        //   title: '分组',
-        //   key: 'group_name',
-        //   align: 'center'
-        // },
-        {
-          width: 100,
-          title: '角色',
-          key: 'role',
+          title: '头像',
+          key: 'avatar',
           align: 'center',
           render: (h, params) => {
-            if(params.row.role === 'worker') {
-              return h('div', '客服');
-            }
-            if(params.row.role === 'manager') {
-              return h('div', '管理员');
-            }
-            if(params.row.role === 'engineer') {
-              return h('div', '工程师');
-            }
+            return h('img', {
+              attrs:{
+                src: params.row.avatar,
+                style: 'width: 70px;border-radius: 2px;'
+              }
+            })
           }
+        },
+        {
+          title: '标签',
+          key: 'tags',
+          align: 'center'
+        },
+        {
+          title: '生日',
+          key: 'group_name',
+          align: 'center'
+        },
+        {
+          width: 100,
+          title: '职业',
+          key: 'career',
+          align: 'center'
+        },{
+          width: 100,
+          title: '城市',
+          key: 'city',
+          align: 'center'
         },
         {
           title: '操作',
@@ -193,7 +189,7 @@ export default {
                 on: {
                     click: () => {
                       this.$Modal.confirm({
-                        title: '确定要删除用户：' + params.row.real_name +'?',
+                        title: '确定要删除用户：' +'?',
                         width: '260',
                         onOk: () => {
                           this.delUsersList({
@@ -250,13 +246,9 @@ export default {
     this.isLoading = true;
     this.getUsersList(this.searchArea);
     },
-    getUsersList(params) {
-      this.isLoading = true;
-      params.page = this.page;
-      params.size = this.size;
-      this.$api.csm.getUsers(params).then(res => {
-        this.listData = res.bot_users || [];
-        this.total = res.hits || 0;
+    getUsersList() {
+      this.$api.user.query().then(res => {
+        this.listData = res || [];
         this.isLoading = false;
       }).catch(() => {
         this.isLoading = false;
@@ -264,8 +256,8 @@ export default {
     },
     delUsersList(params) {
       this.isLoading = true;
-      this.$api.csm.deleteUsers(params).then(() => {
-        this.getUsersList({});
+      this.$api.user.delete(params).then(() => {
+        this.getUsersList();
       }).catch(() => {
         this.isLoading = false;
       });
@@ -275,7 +267,7 @@ export default {
         if (valid) {
            let data = [{
               account: this.userForm.account,
-              real_name: this.userForm.real_name,
+              // real_name: this.userForm.real_name,
               job_num: this.userForm.job_num,
               phone_num: this.userForm.phone_num,
               email: this.userForm.email,

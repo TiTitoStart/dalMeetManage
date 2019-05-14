@@ -69,7 +69,7 @@ export default {
         }
         else {
           this.$router.push({
-            path: '/Home'
+            path: '/home/user'
           });
         }
       }
