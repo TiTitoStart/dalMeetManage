@@ -105,25 +105,7 @@ export default {
           align: 'center',
           render: (h, params) => {
             let that = this;
-            return h('div', [
-              h('div', [
-                  h('Poptip', {
-                      props: {
-                        placement: 'left-start',
-                        size: 'small',
-                        vModel: true,
-                        width: 220
-                      }
-                  }, [
-                    h('div',{
-                      style: {
-                        color: '#2d8cf0',
-                        cursor: 'pointer'
-                      }
-                    },'操作'),
-                    h('div',{
-                      slot: 'content'
-                    },[h('Button', {
+            return h('div',[h('Button', {
                       props: {
                         type: 'warning',
                         size: 'small'
@@ -160,9 +142,7 @@ export default {
                         }
                       }
                     },'删除')])
-                  ])
-              ]),
-          ])}
+          }
         }],
       fieldListData: []
     };

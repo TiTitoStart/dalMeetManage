@@ -2,9 +2,9 @@
   <div class="users-page">
     <div class="main-conetnt">
       <div class="title-part">用户管理</div>
-      <div class="search-area" style="background:#fff;padding: 12px 24px;">
+      <div class="search-area" style="background:#fff;padding: 24px 24px;">
         <div class="search-btn">
-          <Button type="primary" @click="searchUser">搜索</Button>
+          <!-- <Button type="primary" @click="searchUser">搜索</Button> -->
         </div>
         <div class="tool-btn marginLeft20 right">
           <Button type="primary" icon="md-add"  @click="showModal('create')" class="marginRight10">新增</Button>
@@ -31,13 +31,6 @@
         </FormItem>
         <FormItem label="手机号：" prop="phone_num">
           <Input v-model="userForm.phone_num" placeholder="Enter something..." style="width: 400px"></Input>
-        </FormItem>
-        <FormItem label="角色" prop="role">
-          <RadioGroup v-model="userForm.role">
-            <Radio label="worker">客服</Radio>
-            <Radio label="engineer">工程师</Radio>
-            <Radio label="manager">管理员</Radio>
-          </RadioGroup>
         </FormItem>
       </Form>
       <div slot="footer">
