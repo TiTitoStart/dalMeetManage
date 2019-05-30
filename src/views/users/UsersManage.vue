@@ -2,7 +2,7 @@
   <div class="users-page">
     <div class="main-conetnt">
       <div class="title-part">用户管理</div>
-      <div class="search-area" style="background:#fff;padding: 24px 24px;">
+      <div class="search-area" style="background:#fff;padding: 0 14px 24px 0;">
         <div class="search-btn">
           <!-- <Button type="primary" @click="searchUser">搜索</Button> -->
         </div>
